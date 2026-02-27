@@ -643,5 +643,16 @@ src="https://www.facebook.com/tr?id=1069837935344054&ev=PageView&noscript=1"
         s.async=!0; 
         document.head.appendChild(s); 
     </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a[href*="kirvano.com"]').forEach(function(button){
+            button.addEventListener('click', function(){
+                fbq('track', 'InitiateCheckout');
+            });
+        });
+    });
+    </script>
+
 </body>
 </html>
