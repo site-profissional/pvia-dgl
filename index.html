@@ -30,17 +30,22 @@
       }
     }
     </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         /* ==================== RESET E VARIÁVEIS ==================== */
         :root {
             --green-main: #00B85E;
             --green-dark: #008f49;
+            --green-text: #047857; /* Cor com contraste aprovado WCAG */
             --bg-light: #f9fafb;
             --text-dark: #111827;
             --text-gray: #4b5563;
             --border-color: #e5e7eb;
-            --red-alert: #ef4444;
+            --red-alert: #dc2626; /* Ajustado para melhor contraste */
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: #fff; color: var(--text-dark); line-height: 1.6; padding-bottom: 100px; }
@@ -50,7 +55,7 @@
         /* ==================== UTILITÁRIOS E TIPOGRAFIA ==================== */
         .text-center { text-align: center; }
         .bg-gray { background: var(--bg-light); }
-        .highlight { color: var(--green-main); }
+        .highlight { color: var(--green-text); font-weight: bold; }
         .text-red { color: var(--red-alert); }
         section { padding: 60px 0; }
         h2.title { font-size: 2.2rem; font-weight: 800; margin-bottom: 40px; text-align: center; line-height: 1.2;}
@@ -73,13 +78,12 @@
         .badges { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
         .badge { padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; border: 2px solid #fca5a5; color: #dc2626;}
         .badge.solid { background: #dcfce7; color: #166534; border: none; padding: 7px 15px;}
-        .video-box { margin: 30px auto; max-width: 800px; }
+        .video-box { margin: 30px auto; max-width: 800px; min-height: 450px; } /* Min height evita pulo de CLS do player vturb */
 
         /* ==================== GRIDS E MASONRY (PRINTS) ==================== */
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         
-        /* Layout Masonry otimizado para prints de tamanhos variados */
         .masonry-grid {
             column-count: 2;
             column-gap: 15px;
@@ -92,8 +96,9 @@
             margin-bottom: 15px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            break-inside: avoid; /* Evita que a imagem quebre entre as colunas */
+            break-inside: avoid; 
             border: 1px solid var(--border-color);
+            background-color: #f3f4f6; /* Fundo enquanto carrega */
         }
         @media (min-width: 768px) { .masonry-grid { column-count: 3; } }
         
@@ -101,10 +106,9 @@
         .card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-dark); }
         .card p { color: var(--text-gray); font-size: 0.95rem; }
         
-        /* Lista de Checkmarks */
         .check-list { text-align: left; max-width: 500px; margin: 0 auto; line-height: 2; list-style: none; }
         .check-list li { position: relative; padding-left: 30px; margin-bottom: 10px; color: var(--text-gray); font-weight: 500;}
-        .check-list li::before { content: '✓'; position: absolute; left: 0; color: var(--green-main); font-weight: bold; font-size: 1.2rem; }
+        .check-list li::before { content: '✓'; position: absolute; left: 0; color: var(--green-text); font-weight: bold; font-size: 1.2rem; }
 
         /* ==================== MENTOR & DEPOIMENTOS ==================== */
         .mentor-box { display: flex; align-items: center; gap: 30px; background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); flex-wrap: wrap; }
@@ -114,19 +118,18 @@
         .video-testimonial { position: relative; aspect-ratio: 9/16; background: #000; width: 100%; }
         .video-testimonial iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         .video-info-bottom { padding: 15px; text-align: left; }
-        .video-info-bottom h4 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 5px; }
+        .video-info-bottom h3 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 5px; } /* Trocado h4 por h3 para hierarquia correta */
         .video-info-bottom p { font-size: 0.9rem; color: var(--text-gray); line-height: 1.4; }
 
         /* ==================== OFERTA E PREÇO ==================== */
         .price-box { border: 3px solid var(--green-main); border-radius: 20px; padding: 40px; text-align: center; margin-top: 40px; background: #fff; box-shadow: 0 20px 40px rgba(16,185,129,0.15);}
-        .price-big { font-size: 4rem; font-weight: 800; color: var(--green-main); line-height: 1; margin: 20px 0; }
+        .price-big { font-size: 4rem; font-weight: 800; color: var(--green-text); line-height: 1; margin: 20px 0; }
         .price-big span { font-size: 1.5rem; color: var(--text-dark); }
         
         .value-summary { background: #f0fdf4; padding: 20px; border-radius: 12px; margin-bottom: 30px; text-align: left; font-size: 0.95rem;}
         .value-row { display: flex; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 5px;}
         .value-row.total { font-weight: bold; font-size: 1.1rem; border: none; padding-top: 10px; }
 
-        /* Trilha de Aprendizado */
         .step-list { list-style: none; text-align: left; max-width: 600px; margin: 0 auto; }
         .step-list li { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);}
         .step-num { background: var(--green-main); color: #fff; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; flex-shrink: 0;}
@@ -136,7 +139,7 @@
         .faq-question { width: 100%; text-align: left; padding: 20px; background: none; border: none; font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-gray); }
         .faq-item.active .faq-answer { padding-bottom: 20px; max-height: 300px; }
-        .faq-question span { font-size: 1.5rem; transition: transform 0.3s; color: var(--green-main);}
+        .faq-question span { font-size: 1.5rem; transition: transform 0.3s; color: var(--green-text);}
         .faq-item.active .faq-question span { transform: rotate(45deg); }
 
         /* ==================== STICKY FOOTER ==================== */
@@ -159,6 +162,7 @@
 </head>
 <body>
 
+<main>
     <section class="hero">
         <div class="container">
             <h1><span class="highlight">R$ 12.475,70</span> de lucro em dezembro</h1>
@@ -183,17 +187,17 @@
             <h2 class="title">Por que garantimos resultado em 22 horas?</h2>
             <div class="grid-3">
                 <div class="card">
-                    <h3 style="color: var(--green-main); font-size: 2rem; margin-bottom: 0;">$</h3>
+                    <h3 style="color: var(--green-text); font-size: 2rem; margin-bottom: 0;">$</h3>
                     <h3 style="margin-top: 10px;">R$ 10/dia</h3>
                     <p>Único investimento em anúncios. Retorno de R$20 a R$200 no 1° dia.</p>
                 </div>
                 <div class="card">
-                    <h3 style="color: var(--green-main); font-size: 2rem; margin-bottom: 0;">🤖</h3>
+                    <h3 style="color: var(--green-text); font-size: 2rem; margin-bottom: 0;">🤖</h3>
                     <h3 style="margin-top: 10px;">IA 100% Gratuita</h3>
                     <p>A ferramenta que usamos não tem custo e a aplicação é rápida.</p>
                 </div>
                 <div class="card">
-                    <h3 style="color: var(--green-main); font-size: 2rem; margin-bottom: 0;">📝</h3>
+                    <h3 style="color: var(--green-text); font-size: 2rem; margin-bottom: 0;">📝</h3>
                     <h3 style="margin-top: 10px;">Prompts Prontos</h3>
                     <p>Copie, cole e comece a vender.</p>
                 </div>
@@ -214,19 +218,19 @@
             </ul>
 
             <div style="border: 2px solid #fde68a; border-radius: 12px; padding: 20px; margin: 40px auto; max-width: 500px; background: #fffbeb;">
-                <p style="font-size: 0.8rem; color: #d97706; font-weight: bold; margin-bottom: 10px;">BÔNUS EXCLUSIVO</p>
+                <p style="font-size: 0.8rem; color: #b45309; font-weight: bold; margin-bottom: 10px;">BÔNUS EXCLUSIVO</p>
                 <h3 style="font-size: 1.5rem; margin-bottom: 5px;">Grupo de Networking</h3>
-                <p><s style="color: var(--text-gray);">R$97/mês</s> <strong style="color: var(--green-main);">R$0 nessa oferta</strong></p>
+                <p><s style="color: var(--text-gray);">R$97/mês</s> <strong style="color: var(--green-text);">R$0 nessa oferta</strong></p>
             </div>
 
             <h3 style="margin-bottom: 20px;">O que rola no grupo de networking?</h3>
             
             <div class="masonry-grid">
-                <img src="assets/images/networking-3-DcsQQW8O.webp" alt="Networking 1">
-                <img src="assets/images/networking-4-CH1rpWxy.webp" alt="Networking 2">
-                <img src="assets/images/networking-5-D2cCox6n.webp" alt="Networking 3">
-                <img src="assets/images/Captura de tela 2026-02-16 001704.webp" alt="Print Grupo 1">
-                <img src="assets/images/Captura de tela 2026-02-16 001740.webp" alt="Print Grupo 2">
+                <img src="assets/images/networking-3-DcsQQW8O.webp" alt="Networking 1" width="300" height="500" loading="lazy">
+                <img src="assets/images/networking-4-CH1rpWxy.webp" alt="Networking 2" width="300" height="500" loading="lazy">
+                <img src="assets/images/networking-5-D2cCox6n.webp" alt="Networking 3" width="300" height="500" loading="lazy">
+                <img src="assets/images/Captura de tela 2026-02-16 001704.webp" alt="Print Grupo 1" width="300" height="300" loading="lazy">
+                <img src="assets/images/Captura de tela 2026-02-16 001740.webp" alt="Print Grupo 2" width="300" height="300" loading="lazy">
             </div>
 
             <div class="alert-banner" style="background: #fee2e2; border-color: #f87171; color: #991b1b;">
@@ -254,14 +258,14 @@
         <div class="container">
             <div class="mentor-box">
                 <div style="flex-shrink: 0; text-align: center; width: 100%; max-width: 300px; margin: 0 auto;">
-                    <img src="assets/images/foto-perfil-diego.webp" alt="Diego Ferreira Gaioto - Especialista @diegotecnolog.ia" style="border-radius: 12px; margin-bottom: 10px; width: 100%; object-fit: cover;">
+                    <img src="assets/images/foto-perfil-diego.webp" alt="Diego Ferreira Gaioto - Especialista @diegotecnolog.ia" width="300" height="300" loading="lazy" style="border-radius: 12px; margin-bottom: 10px; width: 100%; object-fit: cover;">
                     <span class="badge solid" style="display: block; margin-bottom: 5px;">🤖 Especialista em IA</span>
                     <span class="badge solid" style="display: block; background: #fef08a; color: #854d0e;">💰 +R$100K Faturados</span>
                 </div>
 
                 <div class="mentor-text">
                     <p style="color: var(--text-gray); font-weight: 700;">Seu Mentor</p>
-                    <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Conheça Diego Ferreira Gaioto <span style="font-size: 1.2rem; font-weight: 500; display: block; color: var(--green-main);">@diegotecnolog.ia</span></h2>
+                    <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Conheça Diego Ferreira Gaioto <span style="font-size: 1.2rem; font-weight: 500; display: block; color: var(--green-text);">@diegotecnolog.ia</span></h2>
                     <p style="color: var(--text-gray); margin-bottom: 20px;">Especialista em Inteligência Artificial com mais de 3 anos de experiência no mercado digital. Minha missão é democratizar o acesso à IA para que qualquer pessoa, mesmo sem experiência técnica, possa criar uma fonte de renda consistente e escalável realizando sua <strong>primeira venda com IA em 22h</strong>.</p>
                     <ul class="check-list" style="margin-left: 0; max-width: 100%;">
                         <li>Já transformei <strong>+1500 alunos</strong> em empreendedores digitais</li>
@@ -288,60 +292,60 @@
             <div class="grid-3">
                 <div class="testimonial-card">
                     <div class="video-testimonial">
-                        <iframe src="https://www.youtube.com/embed/gWBlWsoIwe8" title="Depoimento Gustavo - Primeira Venda Diego" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube-nocookie.com/embed/gWBlWsoIwe8" title="Depoimento Gustavo - Primeira Venda Diego" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info-bottom">
-                        <h4>Gustavo (Aluno)</h4>
+                        <h3>Gustavo (Aluno)</h3>
                         <p>Recuperou tudo e lucrou no segundo dia.</p>
                     </div>
                 </div>
                 
                 <div class="testimonial-card">
                     <div class="video-testimonial">
-                        <iframe src="https://www.youtube.com/embed/naBGbLtO6Nc" title="Depoimento João Santos - Diego Primeira Venda" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube-nocookie.com/embed/naBGbLtO6Nc" title="Depoimento João Santos - Diego Primeira Venda" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info-bottom">
-                        <h4>João Santos (Aluno)</h4>
+                        <h3>João Santos (Aluno)</h3>
                         <p>Investiu $60 e voltou $370.</p>
                     </div>
                 </div>
 
                 <div class="testimonial-card">
                     <div class="video-testimonial">
-                        <iframe src="https://www.youtube.com/embed/lZM8tSM47xQ" title="Depoimento Ralph - Primeira Venda com IA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube-nocookie.com/embed/lZM8tSM47xQ" title="Depoimento Ralph - Primeira Venda com IA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info-bottom">
-                        <h4>Ralph (Aluno)</h4>
+                        <h3>Ralph (Aluno)</h3>
                         <p>Pagou o curso em menos de 3 dias.</p>
                     </div>
                 </div>
 
                 <div class="testimonial-card">
                     <div class="video-testimonial">
-                        <iframe src="https://www.youtube.com/embed/AwCBD-ntYsQ" title="Depoimento Jéssica - diegotecnolog.ia" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube-nocookie.com/embed/AwCBD-ntYsQ" title="Depoimento Jéssica - diegotecnolog.ia" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info-bottom">
-                        <h4>Jéssica (Web Designer)</h4>
+                        <h3>Jéssica (Web Designer)</h3>
                         <p>Produto low ticket para captar leads.</p>
                     </div>
                 </div>
 
                 <div class="testimonial-card">
                     <div class="video-testimonial">
-                        <iframe src="https://www.youtube.com/embed/YQYMsAu5ndo" title="Depoimento Matheus - Diego Ferreira Gaioto" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube-nocookie.com/embed/YQYMsAu5ndo" title="Depoimento Matheus - Diego Ferreira Gaioto" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info-bottom">
-                        <h4>Matheus</h4>
+                        <h3>Matheus</h3>
                         <p>De aluno a suporte contratado.</p>
                     </div>
                 </div>
 
                 <div class="testimonial-card">
                     <div class="video-testimonial">
-                        <iframe src="https://www.youtube.com/embed/MqjEJqvOIRM" title="Depoimento Gil - Primeira Venda com IA em 22h" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube-nocookie.com/embed/MqjEJqvOIRM" title="Depoimento Gil - Primeira Venda com IA em 22h" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div class="video-info-bottom">
-                        <h4>Gil</h4>
+                        <h3>Gil</h3>
                         <p>Da equipe de suporte (Vende High Ticket).</p>
                     </div>
                 </div>
@@ -365,7 +369,7 @@
                 <li><div class="step-num">4</div> Transformando fotos em dinheiro</li>
                 <li><div class="step-num">5</div> Sistema de produtos recorrentes (LTV)</li>
             </ul>
-            <p class="text-center" style="color: var(--green-main); font-weight: bold; margin: 20px 0 40px;">Aulas novas e atualizadas toda semana</p>
+            <p class="text-center" style="color: var(--green-text); font-weight: bold; margin: 20px 0 40px;">Aulas novas e atualizadas toda semana</p>
 
             <div class="price-box">
                 <h3 style="font-size: 1.8rem; margin-bottom: 5px;">Curso Clique a Clique</h3>
@@ -462,7 +466,7 @@
             <div class="mentor-box" style="justify-content: center;">
                 <div style="font-size: 5rem;">🛡️</div>
                 <div class="mentor-text">
-                    <p style="color: var(--green-main); font-weight: 700; font-size: 1.2rem;">100% GARANTIDO</p>
+                    <p style="color: var(--green-text); font-weight: 700; font-size: 1.2rem;">100% GARANTIDO</p>
                     <h3 style="font-size: 2rem; margin-bottom: 10px;">Garantia Incondicional de 7 Dias</h3>
                     <p style="color: var(--text-gray); margin-bottom: 10px;">No primeiro dia você já pode ter resultados e fazer sua primeira venda. Mesmo assim, se em até 7 dias você não ficar satisfeito, devolvemos 100% do seu investimento.</p>
                     <ul class="check-list" style="margin-left: 0; max-width: 100%;">
@@ -482,19 +486,19 @@
             <p style="margin-bottom: 40px; color: var(--text-gray);">Arraste ou role a tela para conferir dezenas de provas e alunos que já estão faturando na prática.</p>
             
             <div class="masonry-grid">
-                <img src="assets/images/depoimento-aulas-LYfjTxdP.webp" alt="Depoimento Aulas">
-                <img src="assets/images/depoimento-cliente-CFzTDd7g.webp" alt="Depoimento Cliente">
-                <img src="assets/images/depoimento-jessica-CVZ2-CHp.webp" alt="Depoimento Jéssica">
-                <img src="assets/images/depoimento-jose-DfuIixy1.webp" alt="Depoimento José">
-                <img src="assets/images/depoimento-leads-CJbL2Tsi.webp" alt="Depoimento Leads">
-                <img src="assets/images/Captura de tela 2026-02-16 001847.webp" alt="Print Resultado 1">
-                <img src="assets/images/Captura de tela 2026-02-16 001927.webp" alt="Print Resultado 2">
-                <img src="assets/images/Captura de tela 2026-02-16 002811.webp" alt="Print Resultado 3">
-                <img src="assets/images/Captura de tela 2026-02-16 003339.webp" alt="Print Resultado 4">
-                <img src="assets/images/Captura de tela 2026-02-16 003806.webp" alt="Print Resultado 5">
-                <img src="assets/images/Captura de tela 2026-02-16 004058.webp" alt="Print Resultado 6">
-                <img src="assets/images/Captura de tela 2026-02-16 004901.webp" alt="Print Resultado 7">
-                <img src="assets/images/Captura de tela 2026-02-16 005905.webp" alt="Print Resultado 8">
+                <img src="assets/images/depoimento-aulas-LYfjTxdP.webp" alt="Depoimento Aulas" width="300" height="500" loading="lazy">
+                <img src="assets/images/depoimento-cliente-CFzTDd7g.webp" alt="Depoimento Cliente" width="300" height="500" loading="lazy">
+                <img src="assets/images/depoimento-jessica-CVZ2-CHp.webp" alt="Depoimento Jéssica" width="300" height="500" loading="lazy">
+                <img src="assets/images/depoimento-jose-DfuIixy1.webp" alt="Depoimento José" width="300" height="500" loading="lazy">
+                <img src="assets/images/depoimento-leads-CJbL2Tsi.webp" alt="Depoimento Leads" width="300" height="500" loading="lazy">
+                <img src="assets/images/Captura de tela 2026-02-16 001847.webp" alt="Print Resultado 1" width="300" height="400" loading="lazy">
+                <img src="assets/images/Captura de tela 2026-02-16 001927.webp" alt="Print Resultado 2" width="300" height="400" loading="lazy">
+                <img src="assets/images/Captura de tela 2026-02-16 002811.webp" alt="Print Resultado 3" width="300" height="400" loading="lazy">
+                <img src="assets/images/Captura de tela 2026-02-16 003339.webp" alt="Print Resultado 4" width="300" height="400" loading="lazy">
+                <img src="assets/images/Captura de tela 2026-02-16 003806.webp" alt="Print Resultado 5" width="300" height="400" loading="lazy">
+                <img src="assets/images/Captura de tela 2026-02-16 004058.webp" alt="Print Resultado 6" width="300" height="400" loading="lazy">
+                <img src="assets/images/Captura de tela 2026-02-16 004901.webp" alt="Print Resultado 7" width="300" height="400" loading="lazy">
+                <img src="assets/images/Captura de tela 2026-02-16 005905.webp" alt="Print Resultado 8" width="300" height="400" loading="lazy">
             </div>
             
             <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" target="_blank" class="btn" style="margin-top: 40px;">EU QUERO TER ESSES RESULTADOS</a>
@@ -536,6 +540,7 @@
             </div>
         </div>
     </section>
+</main>
 
     <footer>
         <div class="container">
@@ -577,12 +582,12 @@
                 });
             });
 
-            // Lógica do Cronômetro Falso (Reseta a cada visita, contagem regressiva de 23h 46m 51s)
+            // Lógica do Cronômetro Falso
             let timeInSeconds = (23 * 3600) + (46 * 60) + 51; 
             const timerDisplay = document.getElementById('countdown');
 
             function updateTimer() {
-                if(timeInSeconds <= 0) timeInSeconds = (23 * 3600) + (59 * 60); // Reseta se chegar a 0
+                if(timeInSeconds <= 0) timeInSeconds = (23 * 3600) + (59 * 60); 
                 
                 const hours = Math.floor(timeInSeconds / 3600);
                 const minutes = Math.floor((timeInSeconds % 3600) / 60);
