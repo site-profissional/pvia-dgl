@@ -75,27 +75,10 @@
         .badge.solid { background: #dcfce7; color: #166534; border: none; padding: 7px 15px;}
         .video-box { margin: 30px auto; max-width: 800px; }
 
-        /* ==================== GRIDS E MASONRY (PRINTS) ==================== */
+        /* ==================== GRIDS ==================== */
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        
-        /* Layout Masonry otimizado para prints de tamanhos variados */
-        .masonry-grid {
-            column-count: 2;
-            column-gap: 15px;
-            margin-top: 30px;
-        }
-        .masonry-grid img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            break-inside: avoid; /* Evita que a imagem quebre entre as colunas */
-            border: 1px solid var(--border-color);
-        }
-        @media (min-width: 768px) { .masonry-grid { column-count: 3; } }
+        .grid-prints { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 30px;}
         
         .card { background: #fff; padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-dark); }
@@ -110,12 +93,47 @@
         .mentor-box { display: flex; align-items: center; gap: 30px; background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); flex-wrap: wrap; }
         .mentor-text { flex: 1; min-width: 300px; }
         
+        /* Depoimentos em vídeo */
         .testimonial-card { background: #fff; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .video-testimonial { position: relative; aspect-ratio: 9/16; background: #000; width: 100%; }
         .video-testimonial iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         .video-info-bottom { padding: 15px; text-align: left; }
         .video-info-bottom h4 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 5px; }
         .video-info-bottom p { font-size: 0.9rem; color: var(--text-gray); line-height: 1.4; }
+
+        /* ==================== DEPOIMENTOS EM IMAGEM ==================== */
+        .depoimentos-img-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 30px;
+        }
+        .depoimento-img-card {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+            background: #f9fafb;
+            aspect-ratio: 1 / 1.1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .depoimento-img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+            display: block;
+        }
+        /* Cards mais altos para prints de celular (retrato) */
+        .depoimento-img-card.tall {
+            aspect-ratio: 9 / 16;
+        }
+        /* Cards quadrados para prints de chat */
+        .depoimento-img-card.square {
+            aspect-ratio: 1 / 1;
+        }
 
         /* ==================== OFERTA E PREÇO ==================== */
         .price-box { border: 3px solid var(--green-main); border-radius: 20px; padding: 40px; text-align: center; margin-top: 40px; background: #fff; box-shadow: 0 20px 40px rgba(16,185,129,0.15);}
@@ -148,12 +166,17 @@
         footer { background: #111827; color: #9ca3af; text-align: center; padding: 40px 20px 120px; font-size: 0.85rem; }
         footer a { color: #fff; text-decoration: none; margin: 0 10px;}
 
+        /* ==================== SEÇÃO DEPOIMENTOS IMAGEM ==================== */
+        .section-depoimentos-img { padding: 60px 0; background: #fff; }
+        .section-depoimentos-img.bg { background: var(--bg-light); }
+
         @media (max-width: 600px) {
             .hero h1 { font-size: 2.2rem; }
             .price-big { font-size: 3rem; }
             .sticky-footer { flex-direction: column; gap: 10px; padding: 10px;}
             .sticky-footer .btn { max-width: 100%; }
             body { padding-bottom: 140px; }
+            .depoimentos-img-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -221,15 +244,62 @@
 
             <h3 style="margin-bottom: 20px;">O que rola no grupo de networking?</h3>
             
-            <div class="masonry-grid">
-                <img src="assets/images/networking-3-DcsQQW8O.webp" alt="Networking 1">
-                <img src="assets/images/networking-4-CH1rpWxy.webp" alt="Networking 2">
-                <img src="assets/images/networking-5-D2cCox6n.webp" alt="Networking 3">
-                <img src="assets/images/Captura de tela 2026-02-16 001704.webp" alt="Print Grupo 1">
-                <img src="assets/images/Captura de tela 2026-02-16 001740.webp" alt="Print Grupo 2">
+            <!-- PRINTS DO NETWORKING COM IMAGENS REAIS -->
+            <div class="depoimentos-img-grid">
+                <div class="depoimento-img-card">
+                    <img src="assets/images/networking-3-DcsQQW8O.webp" alt="Resultados grupo networking - Primeira Venda com IA Diego">
+                </div>
+                <div class="depoimento-img-card">
+                    <img src="assets/images/networking-4-CH1rpWxy.webp" alt="Alunos lucrando no grupo de networking">
+                </div>
+                <div class="depoimento-img-card">
+                    <img src="assets/images/networking-5-D2cCox6n.webp" alt="Prints de vendas grupo networking diegotecnolog.ia">
+                </div>
+                <div class="depoimento-img-card">
+                    <img src="assets/images/depoimento-leads-CJbL2Tsi.webp" alt="Leads e resultados alunos Diego">
+                </div>
             </div>
 
-            <div class="alert-banner" style="background: #fee2e2; border-color: #f87171; color: #991b1b;">
+            <!-- DEPOIMENTOS EM IMAGEM — BLOCO 1 -->
+            <div style="margin-top: 50px;">
+                <p style="color: var(--text-gray); font-weight: bold;">📸 Mais Provas Reais</p>
+                <h3 style="font-size: 1.6rem; margin-bottom: 8px;">Alunos que já estão vendendo</h3>
+                <p style="color: var(--text-gray); margin-bottom: 20px;">Prints direto do WhatsApp e redes sociais dos nossos alunos</p>
+                <div class="depoimentos-img-grid">
+                    <div class="depoimento-img-card tall">
+                        <img src="assets/images/Captura de tela 2026-02-16 001704.webp" alt="Depoimento aluno Primeira Venda com IA">
+                    </div>
+                    <div class="depoimento-img-card tall">
+                        <img src="assets/images/Captura de tela 2026-02-16 001740.webp" alt="Resultado aluno método Diego">
+                    </div>
+                    <div class="depoimento-img-card tall">
+                        <img src="assets/images/Captura de tela 2026-02-16 001847.webp" alt="Aluno vendendo com IA">
+                    </div>
+                    <div class="depoimento-img-card tall">
+                        <img src="assets/images/Captura de tela 2026-02-16 001927.webp" alt="Print de venda aluno diegotecnolog.ia">
+                    </div>
+                    <div class="depoimento-img-card tall">
+                        <img src="assets/images/Captura de tela 2026-02-16 002811.webp" alt="Resultado método Primeira Venda IA">
+                    </div>
+                    <div class="depoimento-img-card tall">
+                        <img src="assets/images/Captura de tela 2026-02-16 003339.webp" alt="Aluno faturando com IA">
+                    </div>
+                    <div class="depoimento-img-card tall">
+                        <img src="assets/images/Captura de tela 2026-02-16 003806.webp" alt="Venda realizada aluno Diego">
+                    </div>
+                    <div class="depoimento-img-card tall">
+                        <img src="assets/images/Captura de tela 2026-02-16 004058.webp" alt="Print resultado aluno">
+                    </div>
+                    <div class="depoimento-img-card tall">
+                        <img src="assets/images/Captura de tela 2026-02-16 004901.webp" alt="Aluno com resultado em 22h">
+                    </div>
+                    <div class="depoimento-img-card tall">
+                        <img src="assets/images/Captura de tela 2026-02-16 005905.webp" alt="Resultado real método IA Diego">
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-banner" style="background: #fee2e2; border-color: #f87171; color: #991b1b; margin-top: 40px;">
                 🚨 Devido ao grande número de resultados dos alunos<br>
                 <strong>Valor vai subir para R$497</strong><br>
                 Garanta agora por apenas 197!
@@ -253,8 +323,8 @@
     <section class="bg-gray">
         <div class="container">
             <div class="mentor-box">
-                <div style="flex-shrink: 0; text-align: center; width: 100%; max-width: 300px; margin: 0 auto;">
-                    <img src="assets/images/foto-perfil-diego.webp" alt="Diego Ferreira Gaioto - Especialista @diegotecnolog.ia" style="border-radius: 12px; margin-bottom: 10px; width: 100%; object-fit: cover;">
+                <div style="flex-shrink: 0; text-align: center;">
+                    <img src="assets/images/foto-perfil-diego.webp" alt="Diego Ferreira Gaioto - Especialista @diegotecnolog.ia" style="border-radius: 12px; margin-bottom: 10px; width: 260px; height: 300px; object-fit: cover;">
                     <span class="badge solid" style="display: block; margin-bottom: 5px;">🤖 Especialista em IA</span>
                     <span class="badge solid" style="display: block; background: #fef08a; color: #854d0e;">💰 +R$100K Faturados</span>
                 </div>
@@ -343,6 +413,25 @@
                     <div class="video-info-bottom">
                         <h4>Gil</h4>
                         <p>Da equipe de suporte (Vende High Ticket).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEPOIMENTOS EM IMAGEM EXTRAS -->
+            <div style="margin-top: 50px;">
+                <p style="color: var(--text-gray); font-weight: bold; margin-bottom: 8px;">💬 Mais Depoimentos</p>
+                <div class="depoimentos-img-grid">
+                    <div class="depoimento-img-card">
+                        <img src="assets/images/depoimento-aulas-LYfjTxdP.webp" alt="Depoimento aluno sobre as aulas">
+                    </div>
+                    <div class="depoimento-img-card">
+                        <img src="assets/images/depoimento-cliente-CFzTDd7g.webp" alt="Depoimento cliente satisfeito">
+                    </div>
+                    <div class="depoimento-img-card">
+                        <img src="assets/images/depoimento-jessica-CVZ2-CHp.webp" alt="Depoimento Jessica aluna">
+                    </div>
+                    <div class="depoimento-img-card">
+                        <img src="assets/images/depoimento-jose-DfuIixy1.webp" alt="Depoimento José aluno">
                     </div>
                 </div>
             </div>
@@ -475,33 +564,41 @@
         </div>
     </section>
 
+    <!-- ======= DEPOIMENTOS ENTRE GARANTIA E FAQ ======= -->
     <section>
         <div class="container text-center">
-            <p style="color: var(--text-gray); font-weight: bold;">Resultados Reais</p>
-            <h2 class="title">O que dizem sobre o método</h2>
-            <p style="margin-bottom: 40px; color: var(--text-gray);">Arraste ou role a tela para conferir dezenas de provas e alunos que já estão faturando na prática.</p>
-            
-            <div class="masonry-grid">
-                <img src="assets/images/depoimento-aulas-LYfjTxdP.webp" alt="Depoimento Aulas">
-                <img src="assets/images/depoimento-cliente-CFzTDd7g.webp" alt="Depoimento Cliente">
-                <img src="assets/images/depoimento-jessica-CVZ2-CHp.webp" alt="Depoimento Jéssica">
-                <img src="assets/images/depoimento-jose-DfuIixy1.webp" alt="Depoimento José">
-                <img src="assets/images/depoimento-leads-CJbL2Tsi.webp" alt="Depoimento Leads">
-                <img src="assets/images/Captura de tela 2026-02-16 001847.webp" alt="Print Resultado 1">
-                <img src="assets/images/Captura de tela 2026-02-16 001927.webp" alt="Print Resultado 2">
-                <img src="assets/images/Captura de tela 2026-02-16 002811.webp" alt="Print Resultado 3">
-                <img src="assets/images/Captura de tela 2026-02-16 003339.webp" alt="Print Resultado 4">
-                <img src="assets/images/Captura de tela 2026-02-16 003806.webp" alt="Print Resultado 5">
-                <img src="assets/images/Captura de tela 2026-02-16 004058.webp" alt="Print Resultado 6">
-                <img src="assets/images/Captura de tela 2026-02-16 004901.webp" alt="Print Resultado 7">
-                <img src="assets/images/Captura de tela 2026-02-16 005905.webp" alt="Print Resultado 8">
+            <p style="color: var(--text-gray); font-weight: bold;">🌟 Quem já aplicou fala por si</p>
+            <h2 class="title" style="margin-bottom: 10px;">Mais Alunos, Mais Resultados</h2>
+            <p style="color: var(--text-gray); margin-bottom: 30px;">Depoimentos reais de quem usou o método e mudou de vida</p>
+
+            <div class="depoimentos-img-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
+                <div class="depoimento-img-card">
+                    <img src="assets/images/depoimento-aulas-LYfjTxdP.webp" alt="Depoimento aluno sobre as aulas do método">
+                </div>
+                <div class="depoimento-img-card">
+                    <img src="assets/images/depoimento-cliente-CFzTDd7g.webp" alt="Depoimento cliente satisfeito Primeira Venda IA">
+                </div>
+                <div class="depoimento-img-card">
+                    <img src="assets/images/depoimento-jessica-CVZ2-CHp.webp" alt="Depoimento Jessica - aluna Diego">
+                </div>
+                <div class="depoimento-img-card">
+                    <img src="assets/images/depoimento-jose-DfuIixy1.webp" alt="Depoimento José - resultado real">
+                </div>
+                <div class="depoimento-img-card">
+                    <img src="assets/images/depoimento-leads-CJbL2Tsi.webp" alt="Leads e resultados alunos diegotecnolog.ia">
+                </div>
+                <div class="depoimento-img-card">
+                    <img src="assets/images/networking-3-DcsQQW8O.webp" alt="Resultados grupo alunos networking">
+                </div>
             </div>
-            
-            <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" target="_blank" class="btn" style="margin-top: 40px;">EU QUERO TER ESSES RESULTADOS</a>
+
+            <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" target="_blank" class="btn" style="margin-top: 40px;">QUERO ESSES RESULTADOS TAMBÉM</a>
+            <p class="btn-subtext">✓ Acesso imediato • ✓ Suporte direto • ✓ Garantia de 7 dias</p>
         </div>
     </section>
+    <!-- ======= FIM DEPOIMENTOS ENTRE GARANTIA E FAQ ======= -->
 
-    <section class="bg-gray">
+    <section>
         <div class="container">
             <div class="text-center">
                 <p style="color: var(--text-gray); font-weight: bold;">Dúvidas Frequentes</p>
@@ -564,49 +661,42 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // Lógica do FAQ (Accordion)
+            // FAQ Accordion
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach(item => {
                 const btn = item.querySelector('.faq-question');
                 btn.addEventListener('click', () => {
                     const isActive = item.classList.contains('active');
-                    // Fecha todos
                     faqItems.forEach(faq => faq.classList.remove('active'));
-                    // Abre o clicado se não estava aberto
                     if (!isActive) item.classList.add('active');
                 });
             });
 
-            // Lógica do Cronômetro Falso (Reseta a cada visita, contagem regressiva de 23h 46m 51s)
+            // Cronômetro
             let timeInSeconds = (23 * 3600) + (46 * 60) + 51; 
             const timerDisplay = document.getElementById('countdown');
 
             function updateTimer() {
-                if(timeInSeconds <= 0) timeInSeconds = (23 * 3600) + (59 * 60); // Reseta se chegar a 0
-                
+                if(timeInSeconds <= 0) timeInSeconds = (23 * 3600) + (59 * 60);
                 const hours = Math.floor(timeInSeconds / 3600);
                 const minutes = Math.floor((timeInSeconds % 3600) / 60);
                 const seconds = timeInSeconds % 60;
-
                 timerDisplay.textContent = 
                     String(hours).padStart(2, '0') + ':' + 
                     String(minutes).padStart(2, '0') + ':' + 
                     String(seconds).padStart(2, '0');
-                
                 timeInSeconds--;
             }
 
             setInterval(updateTimer, 1000);
             updateTimer();
 
-            // Só ativamos scroll suave para links que começam ESTRITAMENTE com '#'
+            // Scroll suave
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     if(this.getAttribute('href') !== '#') {
                         e.preventDefault();
-                        document.querySelector(this.getAttribute('href')).scrollIntoView({
-                            behavior: 'smooth'
-                        });
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
                     }
                 });
             });

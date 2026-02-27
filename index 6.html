@@ -75,27 +75,37 @@
         .badge.solid { background: #dcfce7; color: #166534; border: none; padding: 7px 15px;}
         .video-box { margin: 30px auto; max-width: 800px; }
 
-        /* ==================== GRIDS E MASONRY (PRINTS) ==================== */
+        /* ==================== GRIDS E MASONRY (FOTOS) ==================== */
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         
-        /* Layout Masonry otimizado para prints de tamanhos variados */
+        /* Galeria estilo Masonry para respeitar tamanhos diferentes de imagens */
         .masonry-grid {
             column-count: 2;
             column-gap: 15px;
             margin-top: 30px;
         }
-        .masonry-grid img {
-            width: 100%;
-            height: auto;
-            display: block;
+        @media (min-width: 768px) {
+            .masonry-grid { column-count: 3; }
+        }
+        @media (min-width: 1024px) {
+            .masonry-grid { column-count: 4; }
+        }
+        .masonry-item {
+            break-inside: avoid;
             margin-bottom: 15px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            break-inside: avoid; /* Evita que a imagem quebre entre as colunas */
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             border: 1px solid var(--border-color);
+            background: #fff;
         }
-        @media (min-width: 768px) { .masonry-grid { column-count: 3; } }
+        .masonry-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 0; /* Remove borda da tag img e deixa na div pai */
+        }
         
         .card { background: #fff; padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-dark); }
@@ -110,6 +120,7 @@
         .mentor-box { display: flex; align-items: center; gap: 30px; background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); flex-wrap: wrap; }
         .mentor-text { flex: 1; min-width: 300px; }
         
+        /* Atualização CSS para Shorts do YouTube */
         .testimonial-card { background: #fff; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .video-testimonial { position: relative; aspect-ratio: 9/16; background: #000; width: 100%; }
         .video-testimonial iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
@@ -222,14 +233,27 @@
             <h3 style="margin-bottom: 20px;">O que rola no grupo de networking?</h3>
             
             <div class="masonry-grid">
-                <img src="assets/images/networking-3-DcsQQW8O.webp" alt="Networking 1">
-                <img src="assets/images/networking-4-CH1rpWxy.webp" alt="Networking 2">
-                <img src="assets/images/networking-5-D2cCox6n.webp" alt="Networking 3">
-                <img src="assets/images/Captura de tela 2026-02-16 001704.webp" alt="Print Grupo 1">
-                <img src="assets/images/Captura de tela 2026-02-16 001740.webp" alt="Print Grupo 2">
+                <div class="masonry-item">
+                    <img src="assets/images/networking-3-DcsQQW8O.webp" alt="Resultados Primeira Venda com IA em 22h Diego">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/networking-4-CH1rpWxy.webp" alt="Alunos lucrando Primeira Venda com IA">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/networking-5-D2cCox6n.webp" alt="Metodo Diego Primeira Venda Resultados">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/Captura%20de%20tela%202026-02-16%20001704.webp" alt="diegotecnolog.ia print de vendas">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/Captura%20de%20tela%202026-02-16%20001740.webp" alt="Conversa grupo de networking">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/Captura%20de%20tela%202026-02-16%20001847.webp" alt="Print alunos faturando">
+                </div>
             </div>
 
-            <div class="alert-banner" style="background: #fee2e2; border-color: #f87171; color: #991b1b;">
+            <div class="alert-banner" style="background: #fee2e2; border-color: #f87171; color: #991b1b; margin-top: 40px;">
                 🚨 Devido ao grande número de resultados dos alunos<br>
                 <strong>Valor vai subir para R$497</strong><br>
                 Garanta agora por apenas 197!
@@ -253,8 +277,8 @@
     <section class="bg-gray">
         <div class="container">
             <div class="mentor-box">
-                <div style="flex-shrink: 0; text-align: center; width: 100%; max-width: 300px; margin: 0 auto;">
-                    <img src="assets/images/foto-perfil-diego.webp" alt="Diego Ferreira Gaioto - Especialista @diegotecnolog.ia" style="border-radius: 12px; margin-bottom: 10px; width: 100%; object-fit: cover;">
+                <div style="flex-shrink: 0; text-align: center;">
+                    <img src="assets/images/foto-perfil-diego.webp" alt="Diego Ferreira Gaioto - Especialista @diegotecnolog.ia" style="border-radius: 12px; margin-bottom: 10px; width: 100%; max-width: 250px; object-fit: cover;">
                     <span class="badge solid" style="display: block; margin-bottom: 5px;">🤖 Especialista em IA</span>
                     <span class="badge solid" style="display: block; background: #fef08a; color: #854d0e;">💰 +R$100K Faturados</span>
                 </div>
@@ -477,27 +501,49 @@
 
     <section>
         <div class="container text-center">
-            <p style="color: var(--text-gray); font-weight: bold;">Resultados Reais</p>
-            <h2 class="title">O que dizem sobre o método</h2>
-            <p style="margin-bottom: 40px; color: var(--text-gray);">Arraste ou role a tela para conferir dezenas de provas e alunos que já estão faturando na prática.</p>
+            <h2 class="title" style="margin-bottom: 10px;">Mais Resultados dos Nossos Alunos</h2>
+            <p style="color: var(--text-gray); margin-bottom: 40px;">Centenas de alunos já aplicaram o método. Veja o que eles estão dizendo na prática.</p>
             
             <div class="masonry-grid">
-                <img src="assets/images/depoimento-aulas-LYfjTxdP.webp" alt="Depoimento Aulas">
-                <img src="assets/images/depoimento-cliente-CFzTDd7g.webp" alt="Depoimento Cliente">
-                <img src="assets/images/depoimento-jessica-CVZ2-CHp.webp" alt="Depoimento Jéssica">
-                <img src="assets/images/depoimento-jose-DfuIixy1.webp" alt="Depoimento José">
-                <img src="assets/images/depoimento-leads-CJbL2Tsi.webp" alt="Depoimento Leads">
-                <img src="assets/images/Captura de tela 2026-02-16 001847.webp" alt="Print Resultado 1">
-                <img src="assets/images/Captura de tela 2026-02-16 001927.webp" alt="Print Resultado 2">
-                <img src="assets/images/Captura de tela 2026-02-16 002811.webp" alt="Print Resultado 3">
-                <img src="assets/images/Captura de tela 2026-02-16 003339.webp" alt="Print Resultado 4">
-                <img src="assets/images/Captura de tela 2026-02-16 003806.webp" alt="Print Resultado 5">
-                <img src="assets/images/Captura de tela 2026-02-16 004058.webp" alt="Print Resultado 6">
-                <img src="assets/images/Captura de tela 2026-02-16 004901.webp" alt="Print Resultado 7">
-                <img src="assets/images/Captura de tela 2026-02-16 005905.webp" alt="Print Resultado 8">
+                <div class="masonry-item">
+                    <img src="assets/images/depoimento-cliente-CFzTDd7g.webp" alt="Depoimento Cliente">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/depoimento-jessica-CVZ2-CHp.webp" alt="Depoimento Jessica">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/depoimento-jose-DfuIixy1.webp" alt="Depoimento Jose">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/depoimento-leads-CJbL2Tsi.webp" alt="Resultados com Leads">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/depoimento-aulas-LYfjTxdP.webp" alt="Feedback Aulas">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/Captura%20de%20tela%202026-02-16%20001927.webp" alt="Print de Vendas 1">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/Captura%20de%20tela%202026-02-16%20002811.webp" alt="Print de Vendas 2">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/Captura%20de%20tela%202026-02-16%20003339.webp" alt="Print de Vendas 3">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/Captura%20de%20tela%202026-02-16%20003806.webp" alt="Print de Vendas 4">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/Captura%20de%20tela%202026-02-16%20004058.webp" alt="Print de Vendas 5">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/Captura%20de%20tela%202026-02-16%20004901.webp" alt="Print de Vendas 6">
+                </div>
+                <div class="masonry-item">
+                    <img src="assets/images/Captura%20de%20tela%202026-02-16%20005905.webp" alt="Print de Vendas 7">
+                </div>
             </div>
             
-            <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" target="_blank" class="btn" style="margin-top: 40px;">EU QUERO TER ESSES RESULTADOS</a>
+            <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" target="_blank" class="btn" style="margin-top: 40px;">QUERO FAZER PARTE TAMBÉM</a>
         </div>
     </section>
 
