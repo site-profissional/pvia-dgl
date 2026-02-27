@@ -132,7 +132,7 @@
                 <vturb-smartplayer id="vid-69797b8111ded71009584604" style="display: block; margin: 0 auto; width: 100%; max-width: 800px;"></vturb-smartplayer>
             </div>
             
-            <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" target="_blank" class="btn">QUERO COMEÇAR AGORA</a>
+            <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" class="btn">QUERO COMEÇAR AGORA</a>
         </div>
     </section>
 
@@ -202,7 +202,7 @@
                 <li>Meu recorde atual são $930,00 de lucro investindo $232 reais (EM 24 HORAS)</li>
             </ul>
             
-            <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" target="_blank" class="btn">QUERO COMEÇAR AGORA</a>
+            <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" class="btn">QUERO COMEÇAR AGORA</a>
             <p class="btn-subtext">✓ Acesso imediato • ✓ Suporte direto • ✓ Garantia de 7 dias</p>
         </div>
     </section>
@@ -344,7 +344,7 @@
                 </div>
                 <p style="color: var(--text-gray); font-weight: 600;">ou R$ 197 à vista</p>
                 
-                <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" target="_blank" class="btn" style="max-width: 100%; margin-top: 30px;">QUERO COMEÇAR AGORA</a>
+                <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" class="btn" style="max-width: 100%; margin-top: 30px;">QUERO COMEÇAR AGORA</a>
                 
                 <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-gray);">
                     🔒 Pagamento Seguro | ✓ Acesso Imediato | 🛡️ 7 Dias de Garantia
@@ -409,7 +409,7 @@
             
             <div class="text-center" style="margin-top: 40px;">
                 <h3 style="font-size: 1.5rem;">VALOR TOTAL DOS BÔNUS: <s style="color: var(--red-alert);">R$ 1.688</s> — <span class="highlight">GRÁTIS HOJE</span></h3>
-                <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" target="_blank" class="btn">QUERO GARANTIR MEUS BÔNUS AGORA</a>
+                <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" class="btn">QUERO GARANTIR MEUS BÔNUS AGORA</a>
             </div>
         </div>
     </section>
@@ -489,7 +489,7 @@
         <div class="timer-text">
             ÚLTIMA CHANCE: <span id="countdown" class="highlight">23:46:51</span>
         </div>
-        <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" target="_blank" class="btn" style="padding: 10px 20px; font-size: 1rem;">GARANTIR METADE DO PREÇO</a>
+        <a href="https://pay.kirvano.com/3a753926-4edd-4b85-b71e-f242eaa33c0a?aff=8f73eef4-539d-4283-adaf-6502ac5c0cce" class="btn" style="padding: 10px 20px; font-size: 1rem;">GARANTIR METADE DO PREÇO</a>
     </div>
 
     <script>
@@ -530,16 +530,13 @@
             setInterval(updateTimer, 1000);
             updateTimer();
 
-            // O código abaixo para scroll estava causando conflito com o clique nos botões em alguns browsers caso você clique rápido
-            // Só ativamos scroll suave para links que começam ESTRITAMENTE com '#'
+            // Rolagem suave para links de âncora (Mantido apenas para garantir, caso adicione novos botões com âncora depois)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    if(this.getAttribute('href') !== '#') {
-                        e.preventDefault();
-                        document.querySelector(this.getAttribute('href')).scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
             });
 
