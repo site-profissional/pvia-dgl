@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso de Day Trade - Douglas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 80px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: #22c55e;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #cbd5e1;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #22c55e;
+      color: #0f172a;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #16a34a;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+      color: #22c55e;
+    }
+
+    .benefits, .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: #334155;
+    }
+
+    .about {
+      text-align: center;
+    }
+
+    .price-box {
+      text-align: center;
+      background: #1e293b;
+      padding: 40px;
+      border-radius: 15px;
+    }
+
+    .price {
+      font-size: 2.5rem;
+      color: #22c55e;
+      margin: 20px 0;
+    }
+
+    .countdown {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      color: #facc15;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #0f172a;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Aprenda Day Trade com Douglas</h1>
+  <p>Descubra as estratégias que podem transformar seu operacional no mercado financeiro.</p>
+  <a href="#oferta" class="btn">QUERO COMEÇAR AGORA</a>
+</header>
+
+<section>
+  <h2>O Que Você Vai Aprender</h2>
+  <div class="benefits">
+    <div class="card">
+      <h3>📊 Estratégias Validadas</h3>
+      <p>Setup prático e direto ao ponto, focado em consistência.</p>
+    </div>
+    <div class="card">
+      <h3>🧠 Gestão de Risco</h3>
+      <p>Aprenda a proteger seu capital e operar como profissional.</p>
+    </div>
+    <div class="card">
+      <h3>🔥 Psicologia do Trader</h3>
+      <p>Controle emocional para evitar erros comuns.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <h2>Quem é Douglas?</h2>
+  <p>Trader profissional com anos de experiência no mercado. Douglas já ajudou centenas de alunos a desenvolverem disciplina e método no Day Trade.</p>
+</section>
+
+<section>
+  <h2>Depoimentos</h2>
+  <div class="testimonials">
+    <div class="card">
+      <p>"Depois do curso do Douglas, finalmente comecei a operar com confiança!"</p>
+      <strong>- Carlos M.</strong>
+    </div>
+    <div class="card">
+      <p>"Conteúdo direto, sem enrolação. Recomendo demais."</p>
+      <strong>- Ana P.</strong>
+    </div>
+  </div>
+</section>
+
+<section id="oferta">
+  <h2>Oferta Especial</h2>
+  <div class="price-box">
+    <p>Acesso completo ao curso:</p>
+    <div class="price">R$ 497,00</div>
+    <a href="#" class="btn" onclick="comprar()">GARANTIR MINHA VAGA</a>
+    <div class="countdown" id="countdown"></div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Curso Day Trade Douglas - Todos os direitos reservados.
+</footer>
+
+<script>
+  function comprar() {
+    alert("Redirecionando para o checkout...");
+  }
+
+  // Contador regressivo de 24h
+  let countdownElement = document.getElementById("countdown");
+  let horas = 23;
+  let minutos = 59;
+  let segundos = 59;
+
+  function atualizarContador() {
+    segundos--;
+    if (segundos < 0) {
+      segundos = 59;
+      minutos--;
+    }
+    if (minutos < 0) {
+      minutos = 59;
+      horas--;
+    }
+    if (horas < 0) {
+      horas = 23;
+    }
+
+    countdownElement.innerHTML = "Oferta expira em: " + 
+      horas + "h " + minutos + "m " + segundos + "s";
+
+    setTimeout(atualizarContador, 1000);
+  }
+
+  atualizarContador();
+</script>
+
+</body>
+</html>
